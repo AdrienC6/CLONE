@@ -5,10 +5,6 @@
 {% block body %}
     <h1>Create a Pin</h1>
 
-   {{form_start(form)}}
+     {{ include('pins/_form.html.twig', {submitButtonText: 'Create a Pin'}) }}
 
-    {{form_widget(form)}}
-    <input type="submit" value="Create a Pin" formnovalidate>
-
-   {{form_end(form)}}
 {% endblock %}

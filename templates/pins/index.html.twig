@@ -1,6 +1,6 @@
 {% extends 'layouts/base.html.twig' %}
 
-{% block title %}Find all the best pins on earth!{% endblock %}
+{% block title %}XXX{% endblock %}
 
 {% block body %}
     <h1>{{ pluralize(pins|length, 'Pin') }}</h1>
@@ -9,7 +9,7 @@
         <article>
             <h2><a href="{{ path('app_pins_show', {id: pin.id}) }}">{{ pin.title }}</a></h2>
             <p>{{ pin.description|u.truncate(25, '...', false) }}</p>
-            <p>Submitted {{ pin.createdAt|ago}}</p>
+            <p>Publié {{ pin.createdAt|ago}}</p>
         </article>
     {% endfor %}
 {% endblock %}

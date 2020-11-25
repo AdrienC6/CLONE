@@ -29,14 +29,14 @@ class Pin
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Le titre du post est obligatoire !")
+     * @Assert\NotBlank(message="N'oubliez pas le titre de votre post!")
      * @Assert\Length(min=3)
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\NotBlank(message="La description du post est obligatoire!")
+     * @Assert\NotBlank(message="N'oubliez pas la description de votre post!")
      * @Assert\Length(min=10)
      */
     private $description;
@@ -55,6 +55,7 @@ class Pin
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * 
      * @Vich\UploadableField(mapping="pin_image", fileNameProperty="imageName")
+     * @Assert\NotNull(message="N'oubliez pas d'uploader votre image!")
      * @Assert\Image(maxSize="2M")
      * 
      * @var File|null

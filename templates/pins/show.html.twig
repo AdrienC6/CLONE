@@ -3,16 +3,40 @@
 {% block title pin.title %}
 
 {% block body %}
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <article class="bg-white rounded shadow pin ">
+                <div class="mw-100 overflow-hidden">
+                    <a href="#">
+                        <img class="w-100 rounded-top"src="{{ vich_uploader_asset(pin) | imagine_filter('squared_thumbnail_medium')}}" alt="{{ pin.title }}" />
+                    </a>
+                </div>
+                <h2 class="h5 text-center pt-2"><a class="text-muted text-decoration-none text-secondary" href="{{ path('app_pins_show', {id: pin.id}) }}">{{ pin.title }}</a></h2>
+                
+                <p class="text-center text-muted pl-3 pb-3">
+                    <small>
+                        Publié 
+                        <time datetime={{pin.createdAt|date('d-m-Y H:i:s')}}> {{pin.createdAt|ago}} </time>
+                        par [OWNER FULL NAME]
+                    </small>
+                </p>
 
-    <article>
-        <h1>{{ pin.title }}</h1>
-        <p>{{ pin.description }} </p>
-    </article>
+                <p class="text-center text-muted pb-3">
+                    {{pin.description}}
+                </p>
 
-        <a href="{{ path('app_pins_edit', {id : pin.id}) }}">Modifier | </a>
-        <a href="#" onclick="event.preventDefault(); confirm('Êtes-vous sûr(e) ?')&&document.getElementById('js-pin-delete-form').submit();">Supprimer</a>
+                <div class="text-center pb-3">
+                    <a href="{{ path('app_pins_edit', {id : pin.id}) }}" class="btn btn-light">Modifier</a>
+                    <a href="#" onclick="event.preventDefault(); confirm('Êtes-vous sûr(e) ?')&&document.getElementById('js-pin-delete-form').submit();" class="btn btn-light">Supprimer</a>
 
-        <form id="js-pin-delete-form"action="{{ path('app_pins_delete', {id : pin.id}) }}" method="POST" style="display:none;">
-            <input type="hidden" name="_method" value="DELETE">
-        </form>
+                    <form id="js-pin-delete-form"action="{{ path('app_pins_delete', {id : pin.id}) }}" method="POST" style="display:none;">
+                        <input type="hidden" name="_method" value="DELETE">
+                    </form>
+                </div>
+            </article>
+
+            
+        </div>
+    </div>
+    
 {% endblock %}

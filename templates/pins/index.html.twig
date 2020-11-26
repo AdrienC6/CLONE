@@ -3,13 +3,28 @@
 {% block title %}CLONE{% endblock %}
 
 {% block body %}
-    <h1>{{ pluralize(pins|length, 'Pin') }}</h1>
-
-    {%  for pin in pins %}
-        <article>
-            <h2><a href="{{ path('app_pins_show', {id: pin.id}) }}">{{ pin.title }}</a></h2>
-            <p>{{ pin.description|u.truncate(25, '...', false) }}</p>
-            <p>Publié {{ pin.createdAt|ago}}</p>
-        </article>
-    {% endfor %}
+    {% if pins|length > 0 %}
+        <h1 class="mb-4 text-muted text-center">Dernières publications</h1>
+        <!-- H1 : (double-accolade) pluralize(pins|length, 'Pin') (double-accolade)}-->
+        {% for row in pins|batch(3) %}
+            <div class="row mb-5">
+                {%  for pin in row %}
+                    <div class="col-md-4">
+                        <article class="bg-white rounded shadow pin ">
+                            <div class="mw-100 overflow-hidden">
+                                <a href="#">
+                                    <img class="w-100 rounded-top"src="{{ vich_uploader_asset(pin) | imagine_filter('squared_thumbnail_medium')}}" alt="{{ pin.title }}" />
+                                </a>
+                            </div>
+                            <h2 class="h5 text-center pt-2"><a class="text-muted text-decoration-none text-secondary" href="{{ path('app_pins_show', {id: pin.id}) }}">{{ pin.title }}</a></h2>
+                            <p class="text-center text-muted pl-3 pb-3"><small>Publié [OWNER FULL NAME]</small></p>
+                        </article>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="text-center h2 mt-5">Aucun post pour le moment... soyez le premier : <a href="{{path('app_pins_create')}}">Nouveau Post</a></p>
+    {% endif %}
 {% endblock %}
+

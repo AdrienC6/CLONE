@@ -12,7 +12,7 @@
                     <div class="col-md-4">
                         <article class="bg-white rounded shadow pin ">
                             <div class="mw-100 overflow-hidden rounded-top">
-                                <a href="#">
+                                <a  href="{{ path('app_pins_show', {id: pin.id}) }}">
                                     <img class="w-100"src="{{ vich_uploader_asset(pin) | imagine_filter('squared_thumbnail_medium')}}" alt="{{ pin.title }}" />
                                 </a>
                             </div>

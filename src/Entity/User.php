@@ -57,6 +57,11 @@ class User implements UserInterface
      */
     private $pins;
 
+    /**
+     * @ORM\Column(type="string", length=20, unique=true)
+     */
+    private $pseudo;
+
     public function __construct()
     {
         $this->pins = new ArrayCollection();
@@ -200,6 +205,18 @@ class User implements UserInterface
     public function getFullName(): ?string
     {
         return $this->getFirstName() . ' ' . $this->getLastName();
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
     }
 
 }

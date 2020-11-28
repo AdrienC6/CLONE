@@ -5,15 +5,13 @@ namespace App\Twig;
 use Twig\TwigFunction;
 use Twig\Extension\AbstractExtension;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class AppExtension extends AbstractExtension
 {
-
-    private $security;
-    public function __construct(Security $security)
+    public function __construct(SluggerInterface $slugger)
     {
         
-        $this->security=$security;
     }
 
     public function getFunctions(): array

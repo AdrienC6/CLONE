@@ -1,0 +1,22 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title 'Espace Personnel' %}
+
+{% block body %}
+    <div class="row ">
+        <div class="col-md-8 mx-auto text-center">
+            <h1 class="text-center text-muted">Espace Personnel</h1>
+            
+
+            <img class=" mt-3 mb-3 rounded-circle shadow"src="{{app.user.gravatar}}" alt="">
+            <p class="mt-3 lead">{{app.user.email}}</p>
+            <p>
+            <a href="#">Modifier mes informations personnelles</a> | <a href="#">Changer mon mot de passe</a>
+            </p>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+

@@ -30,6 +30,13 @@ class PinsController extends AbstractController
      */
     public function create(Request $request, EntityManagerInterface $em, UserRepository $userRepo) : Response
     {
+        if (!$this->getUser()) {
+            $this->addFlash('error', 'Vous n\'êtes pas connecté(e)');
+
+            return $this->redirectToRoute('app_home');
+        }
+
+       
         $pin = new Pin;
 
         $form = $this->createForm(PinType::class, $pin);

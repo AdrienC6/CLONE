@@ -1,0 +1,34 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title 'Espace Personnel' %}
+
+{% block body %}
+    <div class="row ">
+        <div class="col-md-6 mx-auto text-center">
+            <h1 class="text-center text-muted">Informations personnelles</h1>
+            
+            {{ form_start(form)}}
+                
+                {{form_row(form.pseudo)}}
+                <div class="row">
+                    <div class="col-md-6">
+                        {{form_row(form.firstName,{
+                        label : 'Prénom'
+                        })}}
+                    </div>
+                    <div class="col-md-6">
+                        {{form_row(form.lastName,{
+                        label : 'Nom de famille'
+                        })}}
+                    </div>
+                </div>
+            
+                {{form_row(form.email)}}
+                <button type="submit" class="btn btn-primary btn-block">Modifier</button>
+            {{ form_end(form)}}
+        </div>
+    </div>
+
+
+
+{% endblock %}

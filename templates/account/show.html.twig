@@ -3,7 +3,7 @@
 {% block title 'Espace Personnel' %}
 
 {% block body %}
-    <div class="row ">
+    <div class="row mt-5">
         <div class="col-md-8 mx-auto text-center">
             <h1 class="text-center text-muted">Espace Personnel</h1>
             
@@ -15,7 +15,7 @@
           
             <p><small>📅 Compte créé le {{app.user.createdAt|date('d/m/Y')}}</small></p>
             <p>
-            <a href="{{path('app_account_edit')}}">Modifier mes informations personnelles</a> | <a href="#">Changer mon mot de passe</a>
+            <a href="{{path('app_account_edit')}}">Modifier mes informations personnelles</a> | <a href="{{path('app_account_change_password')}}">Changer mon mot de passe</a>
             </p>
         </div>
     </div>

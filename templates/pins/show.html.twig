@@ -13,7 +13,7 @@
                 
                 <p class="text-center text-muted pl-3 pb-3">
                     <small>
-                        Publié 
+                        Publié
                         <time datetime={{pin.createdAt|date('d-m-Y H:i:s')}}> {{pin.createdAt|ago}} </time>
                         par {{pin.user.pseudo}}
                     </small>
@@ -22,16 +22,17 @@
                 <p class="text-center text-muted pb-3 text-break">
                     {{pin.description}}
                 </p>
+                {% if pin.user.id is same as (app.user.id) %}
+                    <div class="text-center pb-3">
+                        <a href="{{ path('app_pins_edit', {id : pin.id}) }}" class="btn btn-light">Modifier</a>
+                        <a href="#" onclick="event.preventDefault(); confirm('Êtes-vous sûr(e) ?')&&document.getElementById('js-pin-delete-form').submit();" class="btn btn-light">Supprimer</a>
 
-                <div class="text-center pb-3">
-                    <a href="{{ path('app_pins_edit', {id : pin.id}) }}" class="btn btn-light">Modifier</a>
-                    <a href="#" onclick="event.preventDefault(); confirm('Êtes-vous sûr(e) ?')&&document.getElementById('js-pin-delete-form').submit();" class="btn btn-light">Supprimer</a>
-
-                    <form id="js-pin-delete-form"action="{{ path('app_pins_delete', {id : pin.id}) }}" method="POST" style="display:none;">
-                        <input type="hidden" name="csrf_token" value="{{ csrf_token('pin_deletion_' ~ pin.id) }}">
-                        <input type="hidden" name="_method" value="DELETE">
-                    </form>
-                </div>
+                        <form id="js-pin-delete-form"action="{{ path('app_pins_delete', {id : pin.id}) }}" method="POST" style="display:none;">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token('pin_deletion_' ~ pin.id) }}">
+                            <input type="hidden" name="_method" value="DELETE">
+                        </form>
+                    </div>
+                {% endif %}
             </article>
 
             
